@@ -15,7 +15,7 @@ from jose import JWTError, jwt
 import hashlib
 import base64
 from bson import ObjectId
-
+import uvicorn
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
@@ -33,7 +33,7 @@ security = HTTPBearer()
 
 # Create the main app without a prefix
 app = FastAPI(title="Serenity Music Streaming API")
-
+uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
